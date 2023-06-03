@@ -1,10 +1,10 @@
 import { z } from 'zod'
 
 export const registerSchema = z.object({
-  name: z.string(),
-  email: z.string().email('Must have a e-mail'),
-  password: z.string().nonempty('Password required'),
-  telephone: z.string(),
+  name: z.string().nonempty('required'),
+  email: z.string().email('required'),
+  password: z.string().nonempty('required'),
+  telephone: z.string().nonempty('required'),
 });
 
 export type RegisterData = z.infer<typeof registerSchema>;

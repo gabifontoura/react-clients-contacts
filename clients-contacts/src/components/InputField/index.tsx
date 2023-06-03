@@ -8,7 +8,7 @@ interface iInputProps extends InputHTMLAttributes<HTMLInputElement> {
     id: string;
     type: string;
     register?: UseFormRegisterReturn;
-    placeholder: string;
+    placeholder?: string;
     disabled?:boolean;
     onChange?: ( React.ChangeEventHandler<HTMLInputElement> | undefined);
     className?: string;
