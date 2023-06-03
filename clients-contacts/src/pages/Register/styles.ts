@@ -13,7 +13,7 @@ export const StyledRegisterPage = styled.main`
 
 export const StyledFlexBox = styled.div`
   display: flex;
-  gap: 5rem;
+  justify-content: space-between;
   align-items: center;
 
 `;

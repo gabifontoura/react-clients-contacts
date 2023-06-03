@@ -34,7 +34,7 @@ export const StyledButton = styled.button<iStyledButtonProps>`
       case "small":
         return css`
           height: 1.5rem;
-          padding: 0 0.5rem;
+          padding: 1rem 0.5rem;
         `;
     }
   }}
@@ -43,7 +43,8 @@ export const StyledButton = styled.button<iStyledButtonProps>`
     switch (buttonStyle) {
       case "primary":
         return css`
-          background-color:var(--color-blue-800);;
+          background-color:var(--color-blue-800);
+          font-size: 1.2rem;
           
           &:hover {
             background-color:var(--color-blue-100);
@@ -58,16 +59,16 @@ export const StyledButton = styled.button<iStyledButtonProps>`
         `;
       case "secondary":
         return css`
-          background-color:var(--color-grey-100);
-          border: 1px solid var(--color-blue-800) ;
-
-          color:var(--color-blue-900);
+        
+          background-color:var(--color-grey-900);
+          border: 1px solid var(--color-grey-300) ;
+          font-size: 1.2rem;
+          color:var(--color-grey-100);
           
 
           &:hover {
             background-color: var(--color-grey-300);
             color: #000;
-            font-weight: 600;
 
           }
 
@@ -78,6 +79,27 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 
           }
         `;
+        case "edit":
+          return css`
+            padding: 0.5rem;
+            background-color:var(--color-grey-1000);
+            font-size: 1.2rem;
+            color:var(--color-grey-700);
+            
+  
+            &:hover {
+              background-color: var(--color-grey-300);
+              color: #000;
+  
+            }
+  
+            &:disabled {
+              background: var(--color-grey-600);
+            
+            ]
+  
+            }
+          `;
     }
   }}
 `;

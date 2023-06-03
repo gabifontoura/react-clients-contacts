@@ -16,7 +16,7 @@ export const StyledInput = styled.input`
   padding: 0 1rem;
   height: 3rem;
   width: 100%;
-  font-size: 1.3rem;
+  font-size: 1rem;
 
   &:focus {
     outline: 2px solid var( --color-blue-900);

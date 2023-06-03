@@ -1,6 +1,157 @@
+import { useContext, useEffect, useState} from "react";
+import { UserContext} from "../../providers/UserContext";
+import { api } from "../../services/api";
+import { Container, StyledDashboard } from "./styles";
+import { StyledText } from "../../styles/typography";
+import { StyledButton } from "../../styles/buttons";
+import { Card } from "../../components/MyProfileCard";
+import { ExtraInfoList, StyledCard } from "../../components/MyProfileCard/styles";
+import { FiPhoneCall } from "react-icons/fi";
+import { TiDelete } from "react-icons/ti";
+import { MdOutlineAdd, MdOutlineEmail, MdOutlineModeEditOutline, } from "react-icons/md";
+import { UpdateUserModal } from "../../components/ModalUpdateUser";
+import { ContactList } from "../../components/ContactCard/styles";
+import { ContactCard } from "../../components/ContactCard";
+import { AddContactModal } from "../../components/ModalAddContact";
+
+
+
+export interface Contact {
+    id: number;
+    name: string;
+    email: string;
+    telephone: string;
+  }
 
 export const Dashboard = () => {
+
+const { user, setUser, userLogout, isModalUpdateVisible, setIsModalUpdateVisible, deleteUser, setIsModalAddContactVisible, isModalAddContactVisible} = useContext(UserContext);
+const userID = localStorage.getItem("@USERid");
+const token = localStorage.getItem("@TOKEN");
+
+const [extraContacts, setExtraContacts] = useState<Contact[]>([]);
+const [allContacts, setAllContacts] = useState<Contact[]>([]);
+
+
+useEffect(() => {
+    (async () => {
+        api.defaults.headers.common.authorization = `Bearer ${token}`
+        const response = await api.get(`/users/${userID}`)
+        setUser(response.data);
+        setExtraContacts(response.data.contacts);
+   
+    })();
+  }, []);
+
+
+
+  useEffect(() => {
+    (async () => {
+    api.defaults.headers.common.authorization = `Bearer ${token}`
+      const response = await api.get("/users");
+      setAllContacts(response.data)
+    })();
+  }, []);
+
   return (
-    <div>Dashboard</div>
+  <>
+    {user && (
+        <StyledDashboard>
+      
+            {isModalUpdateVisible && <UpdateUserModal />}
+            {isModalAddContactVisible && <AddContactModal />}
+            <Container>
+          
+            <header>
+
+                <StyledText tag="h1" fontSize="two">
+                    Hello, {user.name}
+                </StyledText>
+
+                <StyledButton
+                    buttonSize="medium"
+                    buttonStyle="secondary"
+                    onClick={() => userLogout()}
+                >
+                Exit
+                </StyledButton>
+            </header>
+            <section>
+                <div className="users">
+
+                    <StyledText tag="h2" fontSize="bodyText">All Contacts</StyledText>
+                    <ContactList>
+                        {allContacts.map((contact) => (
+                            <ContactCard key={contact.id} contact={contact} />
+                                ))}
+                    </ContactList>
+                </div>
+         
+            <div className="profile">
+       
+                <StyledText tag="h4" fontSize="three" textAlign='center'>
+                    My profile
+                </StyledText>
+
+                <StyledCard>
+            
+                    <div className="edit">
+                        <StyledButton buttonSize="small" title="Edit" buttonStyle="edit" onClick={() => setIsModalUpdateVisible(true)}>
+                            <MdOutlineModeEditOutline />
+                        </StyledButton>
+                        <StyledButton buttonSize="small" title="Delete" buttonStyle="edit" onClick={() => deleteUser()}>
+                        <TiDelete />
+                        </StyledButton>
+                    </div>
+
+                    <StyledText tag="p" fontSize="bodyText">
+                        {user.name}
+                    </StyledText>
+            
+                    <div className="line">
+                        <MdOutlineEmail />
+                        <StyledText tag="p" fontSize="bodyText">
+                            {user.email}
+                        </StyledText>
+                    </div>
+                    <div className="line">
+                        <FiPhoneCall/>
+                        <StyledText tag="p" fontSize="bodyText">
+                            {user.telephone}
+                        </StyledText>
+                    </div>
+
+                </StyledCard>
+                <div>
+                    <div className='add'>
+
+                        <StyledText tag="h4" fontSize="three">
+                            Extra info:
+                        </StyledText>
+                        <StyledButton buttonSize='small' buttonStyle='primary' onClick={() => setIsModalAddContactVisible(true)}>
+                           <>
+                            <MdOutlineAdd />
+                            <StyledText tag="h5">
+                            Add
+                        </StyledText>
+                           </>
+                        </StyledButton>
+                    </div>
+
+                    <ExtraInfoList>
+                    {extraContacts.map((contact) => (
+                        <Card key={contact.id} contact={contact} />
+                        ))}
+                    </ExtraInfoList>
+                </div>
+            </div>
+      
+            </section>
+            </Container>
+
+        </StyledDashboard>
+      )}
+  </>
   )
 }
+

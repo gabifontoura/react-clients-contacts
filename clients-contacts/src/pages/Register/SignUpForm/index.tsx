@@ -49,7 +49,7 @@ const SignUpForm = () => {
     <StyledForm noValidate onSubmit={handleSubmit(submit)}>
       <StyledFlexBox>
 
-        <StyledText tag="h4" >
+        <StyledText tag="h2" fontSize="one" >
           Create new Account
         </StyledText>
         <NavLink to="/" className="main-nav-active">
@@ -61,7 +61,7 @@ const SignUpForm = () => {
       <InputField
         type="text"
         id="name"
-        placeholder="Type your name"
+        placeholder="Type your full name"
         register={register("name")}
         disabled={globalLoading}
       />

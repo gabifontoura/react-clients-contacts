@@ -35,14 +35,14 @@ const LoginForm = () => {
   };
   return (
     <StyledForm onSubmit={handleSubmit(submit)}>
-      <StyledText tag="h3" >
-        Login
-      </StyledText>
+        <StyledText tag="h2" fontSize="one" >
+          Login
+        </StyledText>
 
       <InputField
         type="email"
         id="email"
-        placeholder="Type your email"
+        placeholder="email"
         register={register("email")}
         disabled={globalLoading}
       />
@@ -55,7 +55,7 @@ const LoginForm = () => {
       <InputField
         type="password"
         id="password"
-        placeholder="Type your password"
+        placeholder="password"
         register={register("password")}
         disabled={globalLoading}
       />
