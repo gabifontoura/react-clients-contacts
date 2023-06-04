@@ -49,7 +49,7 @@ const SignUpForm = () => {
     <StyledForm noValidate onSubmit={handleSubmit(submit)}>
       <StyledFlexBox>
 
-        <StyledText tag="h2" fontSize="one" >
+        <StyledText tag="h2" fontSize="two" >
           Create new Account
         </StyledText>
         <NavLink to="/" className="main-nav-active">

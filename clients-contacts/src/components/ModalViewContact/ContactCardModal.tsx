@@ -20,7 +20,6 @@ export const ContactsCardModal = ({ contact }: CardProps) => {
               {contact.email}
             </StyledText>
           </div>
-          |
           <div className="line">
             <StyledText tag="p" fontSize="three">
               {contact.telephone}

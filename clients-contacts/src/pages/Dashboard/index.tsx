@@ -93,7 +93,7 @@ export const Dashboard = () => {
             </header>
             <section>
               <div className="users">
-                <StyledText tag="h2" fontSize="bodyText">
+                <StyledText tag="h2" fontSize="one" >
                   All Contacts
                 </StyledText>
                 <ContactList>
@@ -149,7 +149,7 @@ export const Dashboard = () => {
                 <div>
                   <div className="add">
                     <StyledText tag="h4" fontSize="three">
-                      Extra info:
+                      Contacts:
                     </StyledText>
                     <StyledButton
                       buttonSize="small"

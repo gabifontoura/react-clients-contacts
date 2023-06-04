@@ -33,7 +33,7 @@ const LoginForm = () => {
   };
   return (
     <StyledForm onSubmit={handleSubmit(submit)}>
-      <StyledText tag="h2" fontSize="one">
+      <StyledText tag="h2" fontSize="two">
         Login
       </StyledText>
 

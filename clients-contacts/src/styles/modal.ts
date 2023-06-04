@@ -19,12 +19,13 @@ export const StyledModalBox = styled.div`
   height: max-content;
   padding-bottom: 2rem;
   max-height: 30rem;
-  min-width: 30rem;
+  min-width: 20rem;
   background-color: var(--color-grey-900);
   justify-content: center;
   align-items: center;
   border-radius: var(--radius-2);
   width:fit-content;
+
 
   .modal-header {
     display: flex;

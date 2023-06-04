@@ -33,5 +33,13 @@ export const ExtraInfoList = styled.ul`
   list-style: none;
   overflow-y: auto;
   max-height: 25rem;
-  margin: 0.5rem;
+  margin: 1rem 0 0 1.5rem;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    height: 15rem;
+    justify-content: center;
+    width: 100%;
+    
+  }
 `;

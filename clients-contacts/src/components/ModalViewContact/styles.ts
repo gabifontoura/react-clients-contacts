@@ -36,5 +36,11 @@ export const StyledContactsCardModal = styled.li`
     width: 80%;
     padding: 0.5rem;
     align-items: center;
+    
+    @media (max-width: 1000px) {
+            flex-direction: column;
+            gap: 0.5rem;
+            width: 100%;
+        }
   }
 `;
