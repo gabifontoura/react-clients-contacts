@@ -4,33 +4,29 @@ import { StyledForm } from "../../styles/form";
 import { StyledModalBg, StyledModalBox } from "../../styles/modal";
 import { StyledText } from "../../styles/typography";
 import InputField from "../InputField";
-import { UserContext, iUser } from "../../providers/UserContext";
+import { UserContext } from "../../providers/UserContext";
 import { useForm } from "react-hook-form";
 import { CgClose } from "react-icons/cg";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { updateSchema } from "./schema";
+import { Contact } from "../../pages/Dashboard";
 
-export const UpdateUserModal = () => {
-  const { user, setIsModalUpdateVisible, globalLoading, updateUser } =
-    useContext(UserContext);
+export const ModalUpdateContact = () => {
+  const {
+    setIsModalUpdateContactVisible,
+    globalLoading,
+    updateContact,
+    contact,
+  } = useContext(UserContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<iUser>({
-    resolver: zodResolver(updateSchema),
-    defaultValues: {
-      name: user?.name,
-      email: user?.email,
-      telephone: user?.telephone,
-    },
-  });
+  } = useForm<Contact>();
 
-  const submit = (data: iUser) => {
-    if (data) {
-      updateUser(data);
+  const submit = (data: Contact) => {
+    if (data && contact) {
+      updateContact(data, contact);
       reset();
     }
   };
@@ -40,12 +36,12 @@ export const UpdateUserModal = () => {
       <StyledModalBox>
         <div className="modal-header">
           <StyledText tag="h3" fontSize="one">
-            Update Main Info
+            Update Contact
           </StyledText>
           <StyledButton
             buttonStyle="edit"
             buttonSize="edit"
-            onClick={() => setIsModalUpdateVisible(false)}
+            onClick={() => setIsModalUpdateContactVisible(false)}
           >
             <CgClose />
           </StyledButton>
@@ -55,7 +51,9 @@ export const UpdateUserModal = () => {
           <InputField
             type="text"
             id="name"
-            placeholder={user?.name !== "" ? user?.name : "Type your full name"}
+            placeholder={
+              contact?.name !== "" ? contact?.name : "Type your full name"
+            }
             register={register("name")}
             disabled={globalLoading}
           />
@@ -68,7 +66,9 @@ export const UpdateUserModal = () => {
           <InputField
             type="email"
             id="email"
-            placeholder={user?.email !== "" ? user?.email : "Type your email"}
+            placeholder={
+              contact?.email !== "" ? contact?.email : "Type your email"
+            }
             register={register("email")}
             disabled={globalLoading}
           />
@@ -82,7 +82,9 @@ export const UpdateUserModal = () => {
             type="telephone"
             id="telephone"
             placeholder={
-              user?.telephone !== "" ? user?.telephone : "Type your telephone"
+              contact?.telephone !== ""
+                ? contact?.telephone
+                : "Type your telephone"
             }
             register={register("telephone")}
             disabled={globalLoading}

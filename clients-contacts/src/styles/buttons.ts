@@ -61,13 +61,13 @@ export const StyledButton = styled.button<iStyledButtonProps>`
         return css`
         
           background-color:var(--color-grey-900);
-          border: 1px solid var(--color-grey-300) ;
+          border: 1px solid var(--color-grey-600) ;
           font-size: 1.2rem;
           color:var(--color-grey-100);
           
 
           &:hover {
-            background-color: var(--color-grey-300);
+            background-color: var(--color-grey-200);
             color: #000;
 
           }
@@ -83,14 +83,12 @@ export const StyledButton = styled.button<iStyledButtonProps>`
           return css`
             padding: 0.5rem;
             background-color:var(--color-grey-1000);
+            color:var(--color-grey-900);
             font-size: 1.2rem;
-            color:var(--color-grey-700);
-            
   
             &:hover {
               background-color: var(--color-grey-300);
               color: #000;
-  
             }
   
             &:disabled {

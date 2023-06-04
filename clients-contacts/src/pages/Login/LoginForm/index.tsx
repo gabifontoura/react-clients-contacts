@@ -10,14 +10,12 @@ import { StyledText } from "../../../styles/typography";
 import { StyledButton } from "../../../styles/buttons";
 import { UserContext } from "../../../providers/UserContext";
 
-
-export interface iLoginFormValues{
-    email:string;
-    password:string;
+export interface iLoginFormValues {
+  email: string;
+  password: string;
 }
 
 const LoginForm = () => {
-
   const { userLogin, globalLoading } = useContext(UserContext);
 
   const {
@@ -35,9 +33,9 @@ const LoginForm = () => {
   };
   return (
     <StyledForm onSubmit={handleSubmit(submit)}>
-        <StyledText tag="h2" fontSize="one" >
-          Login
-        </StyledText>
+      <StyledText tag="h2" fontSize="one">
+        Login
+      </StyledText>
 
       <InputField
         type="email"
@@ -47,7 +45,7 @@ const LoginForm = () => {
         disabled={globalLoading}
       />
       {errors.email?.message && (
-        <StyledText tag="p" fontSize="warnText" >
+        <StyledText tag="p" fontSize="warnText">
           {errors.email.message}
         </StyledText>
       )}
@@ -60,7 +58,7 @@ const LoginForm = () => {
         disabled={globalLoading}
       />
       {errors.password?.message && (
-        <StyledText tag="p" fontSize="warnText" >
+        <StyledText tag="p" fontSize="warnText">
           {errors.password.message}
         </StyledText>
       )}

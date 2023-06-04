@@ -17,13 +17,14 @@ export const StyledModalBox = styled.div`
   display: flex;
   flex-direction: column;
   height: max-content;
+  padding-bottom: 2rem;
   max-height: 30rem;
-  width: 100%;
-  max-width: 25rem;
+  min-width: 30rem;
   background-color: var(--color-grey-900);
   justify-content: center;
   align-items: center;
   border-radius: var(--radius-2);
+  width:fit-content;
 
   .modal-header {
     display: flex;
@@ -32,6 +33,23 @@ export const StyledModalBox = styled.div`
     padding: 1.5rem 1.5rem 1.5rem 2rem;
     align-items: baseline;
 
+  }
+
+  .line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        
+    }
+
+  .icon{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0 0 0 ;
+      
   }
 
 

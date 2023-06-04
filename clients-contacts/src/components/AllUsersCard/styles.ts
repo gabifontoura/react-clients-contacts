@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledContactCard = styled.ul`
-    border: solid 1px var(--color-blue-900);
+    border: solid 1px var(--color-blue-800);
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -27,6 +27,8 @@ export const StyledContactCard = styled.ul`
         width: 60%;
         padding: 0.5rem;
     }
+
+
 `;
 
 
@@ -36,8 +38,8 @@ export const ContactList = styled.ul`
     list-style: none;
     margin-top: 1rem;
     overflow-y: scroll;
-    height: 20rem;
-    border: solid 1px var(--color-grey-600);
+    height: 15rem;
+    border: solid 1px var(--color-blue-800);
     width: 40rem;
 `;
 

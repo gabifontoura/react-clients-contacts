@@ -40,6 +40,7 @@ export const Container = styled.main`
         display: flex;
         align-items: center;
         justify-content: space-between;
+        padding: 1rem 0;
     }
 
 
@@ -58,6 +59,10 @@ export const Container = styled.main`
         padding: 2rem 0;
     }
 
+
+    .card{
+        margin: 0.5rem;
+    }
 
 `;
 
