@@ -45,9 +45,19 @@ interface iUserContext {
   setIsModalUpdateVisible: React.Dispatch<React.SetStateAction<boolean | null>>;
   isModalAddContactVisible: boolean | null;
   setIsModalAddContactVisible: React.Dispatch<React.SetStateAction<boolean | null>>;
+  isModalUpdateContactVisible: boolean | null;
+  setIsModalUpdateContactVisible: React.Dispatch<React.SetStateAction<boolean | null>>;
   updateUser: (formData: iUser) => void;
   deleteUser: () => void;
   addContact: (formData: Contact)  => void;
+  deleteContact:  (contactID: number) => void;
+  extraContacts: Contact[] | null;
+  setExtraContacts: React.Dispatch<React.SetStateAction<Contact[]|null>>;
+  updateContact: (formData: Contact, contact: Contact)  => void;
+  contact:Contact|null;
+  setContact:React.Dispatch<React.SetStateAction<Contact|null>>;
+  isModalViewContactVisible: boolean | null;
+  setIsModalViewContactVisible: React.Dispatch<React.SetStateAction<boolean | null>>;
 }
 
 export const UserContext = createContext<iUserContext>({} as iUserContext);
@@ -58,6 +68,10 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
     const [user, setUser] = useState<iUser | null>(null);
     const [isModalUpdateVisible, setIsModalUpdateVisible] = useState<boolean | null>(null);
     const [isModalAddContactVisible, setIsModalAddContactVisible] = useState<boolean | null>(null);
+    const [isModalUpdateContactVisible, setIsModalUpdateContactVisible] = useState<boolean | null>(null);
+    const [isModalViewContactVisible, setIsModalViewContactVisible] = useState<boolean | null>(null);
+    const [extraContacts, setExtraContacts] = useState<Contact[] | null>(null);
+    const [contact, setContact] = useState<Contact | null>(null);
     
 
     const token = localStorage.getItem("@TOKEN");
@@ -184,15 +198,77 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
   const addContact = async (formData: Contact) => {
     try {
       const response =  await api.post(`/users/${userID}/contacts`, formData);
+
       console.log(response)
       setIsModalAddContactVisible(false)
+      setGlobalLoading(true);
+
+      (async () => {
+        const response = await api.get(`/users/${userID}`)
+        setExtraContacts(response.data.contacts);
+      })();
+
     } catch (error) {
       console.log(error);
 
+    }  finally {
+      setGlobalLoading(false);
     }
   };
 
-    
+  const deleteContact = async (contactID: number) => {
+    try {
+      await api.delete(`/contacts/${contactID}`);
+      setGlobalLoading(true);
+      (async () => {
+        const response = await api.get(`/users/${userID}`)
+        setExtraContacts(response.data.contacts);
+      })();
+     
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setGlobalLoading(false);
+    }
+  };
+
+  const updateContact = async (formData: Contact, contact: Contact) => {
+    try {
+
+      let updatedName = formData?.name;
+      let updatedEmail = formData?.email;
+
+      if(updatedName === ""){
+        updatedName = contact.name
+      }
+      if(updatedEmail === ""){
+        updatedEmail = contact.email
+      }
+
+      const updatedFormData = {
+        ...formData,
+        name: updatedName,
+        email: updatedEmail,
+
+      };
+
+      const response =  await api.patch(`/contacts/${contact.id}`, updatedFormData);
+      console.log(response.data)
+      setIsModalUpdateContactVisible(false)
+      setGlobalLoading(true);
+      (async () => {
+        const response = await api.get(`/users/${userID}`)
+        setExtraContacts(response.data.contacts);
+      })();
+     
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setGlobalLoading(false);
+    }
+  };
+
+  
 
     return (
         <UserContext.Provider
@@ -210,7 +286,18 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
             deleteUser,
             setIsModalAddContactVisible,
             isModalAddContactVisible,
-            addContact
+            setIsModalUpdateContactVisible,
+            isModalUpdateContactVisible,
+            addContact,
+            deleteContact,
+            extraContacts,
+            setExtraContacts,
+            updateContact,
+            contact,
+            setContact,
+            setIsModalViewContactVisible,
+            isModalViewContactVisible,
+  
           }}
         >
           {children}

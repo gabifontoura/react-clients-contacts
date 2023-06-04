@@ -8,8 +8,6 @@ export const StyledDashboard = styled.main`
     width: 100vw;
     min-height: 100vh;
     height: max-content;
-
-
 `;
 
 export const Container = styled.main`
@@ -21,6 +19,8 @@ export const Container = styled.main`
     flex-direction: column;
     padding: 2rem;
     gap:1rem;
+   
+   
 
     .profile {
         background-color: var(--color-grey-1000);
@@ -32,7 +32,12 @@ export const Container = styled.main`
         gap:1.5rem;
         max-width: 1100px;
         width: max-content;
-        justify-content: flex;
+
+        @media (max-width: 1000px) {
+            flex-direction: column;
+            gap: 0.5rem;
+            width: 100%;
+        }
    
     }
 
@@ -40,6 +45,7 @@ export const Container = styled.main`
         display: flex;
         align-items: center;
         justify-content: space-between;
+        padding: 1rem 0;
     }
 
 
@@ -52,12 +58,26 @@ export const Container = styled.main`
         display: flex;
         justify-content: space-between;
         gap:2rem;
+
+        @media (max-width: 1000px) {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
     }
 
     .users{
+        display: flex;
+        flex-direction: column;
         padding: 2rem 0;
+        align-items: center;
+
     }
 
+
+    .card{
+        margin: 1rem 0 0 1.5rem;
+        align-self: center;
+    }
 
 `;
 

@@ -11,30 +11,35 @@ export const StyledCard = styled.div`
   flex-wrap: wrap;
   overflow: auto;
 
-
   .line {
-        display: flex;
-        gap: 0.8rem;
-        align-items: center;
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+  }
 
-    }
-
-    .edit{
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
-        gap: 0.2rem;
-       
-    }
+  .edit {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.2rem;
+  }
 `;
 
-
 export const ExtraInfoList = styled.ul`
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 1rem;
+  list-style: none;
+  overflow-y: auto;
+  max-height: 25rem;
+  margin: 1rem 0 0 1.5rem;
+
+  @media (max-width: 1000px) {
     flex-direction: column;
-    gap: 1rem;
-    list-style: none;
-    padding-top: 1rem;
-    overflow: auto;
+    height: 15rem;
+    justify-content: center;
+    width: 100%;
+    
+  }
 `;
