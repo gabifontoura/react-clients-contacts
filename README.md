@@ -1,7 +1,9 @@
 # react-clients-contacts
 Cadastro de clientes com vínculo de contatos
 
-API: https://github.com/gabifontoura/api-clients-contacts
+## API
+
+https://github.com/gabifontoura/api-clients-contacts
 
 ## Installation
 
