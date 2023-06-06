@@ -20,7 +20,6 @@ export const Container = styled.main`
     padding: 2rem;
     gap:1rem;
    
-   
 
     .profile {
         background-color: var(--color-grey-1000);
@@ -75,7 +74,7 @@ export const Container = styled.main`
 
 
     .card{
-        margin: 1rem 0 0 1.5rem;
+        margin: 1rem 0 0 1rem;
         align-self: center;
     }
 

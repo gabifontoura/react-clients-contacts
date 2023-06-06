@@ -83,7 +83,7 @@ export const StyledButton = styled.button<iStyledButtonProps>`
           return css`
             padding: 0.5rem;
             background-color:var(--color-grey-1000);
-            color:var(--color-grey-900);
+            color:var(--color-grey-800);
             font-size: 1.2rem;
   
             &:hover {
